@@ -1,0 +1,5 @@
+@each $direction in (top bottom left right){
+  .margin-#{$direction}{
+    margin-#{$direction}:1em;
+  }
+}
