@@ -11,6 +11,26 @@
           %li= link_to "Log in", new_user_session_path
 
 .container
+
+  .row
+    .col-md-12
+      .page-header
+        %h1 Dashboard
+
   .row
     .col-sm-12
-      Hey
+      .alert.alert-warning You need to input your hours
+  .row
+    .col-md-12
+      %h4
+        Some cool project (the one you're on)
+        .label.label-default 1/1/2016 - 1/14/2016
+      %br
+  .well
+    .row
+      - (1..14).each do |index|
+        .col-md-2
+          %label January #{index}
+          .input-group.input-group-sm
+            %input{ type: 'text', class: 'form-control', placeholder: "Enter hours" }
+            %span.input-group-addon hours
