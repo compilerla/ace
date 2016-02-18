@@ -26,25 +26,130 @@
       %br 
   .row
     .col-md-12
-      .panel.panel-warning
+      .panel.panel-default
         .panel-heading
-          Current period &nbsp;|&nbsp; January 1, 2016 - January 14, 2016 &nbsp;&nbsp;
+          %strong January 1, 2016 - January 7, 2016 &nbsp;&nbsp;
           .label.label-default 
         .panel-body
-          - (1..14).each do |index|
-            .col-md-2
-              %label January #{index}
-              .input-group.input-group-sm.margin-bottom
-                %input{ type: 'text', class: 'form-control', placeholder: "Enter hours" }
-                %span.input-group-addon hours
+          %table.table.table-condensed
+            %thead
+              - ['Log type', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Total', ''].each do |day|
+                %th= day
+            %tbody
+              %tr
+                %td{style: 'width:20%;'} Service
 
-          .col-md-12.text-right
+                - (1..7).each do
+                  %td
+                    %input.form-control{type: 'text', placeholder: '0'}
+                      
+                %td
+                  %strong #{Random.new.rand(8)} hours
+                %td
+
+              %tr
+                %td{style: 'width:20%;'} Break
+
+                - (1..7).each do
+                  %td
+                    %input.form-control{type: 'text', placeholder: '0'}
+                      
+                %td
+                  %strong #{Random.new.rand(8)} hours
+                %td
+
+              %tr
+                %td{style: 'width:20%;'} Lunch
+
+                - (1..7).each do
+                  %td
+                    %input.form-control{type: 'text', placeholder: '0'}
+                %td
+                  %strong #{Random.new.rand(8)} hours
+                %td
+
+              %tr
+                %td{style: 'width:20%;'}
+                  %select.form-control
+                    %option Training
+                    %option VSP
+                    %option Personal Appointment
+
+                - ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].each do |day|
+                  %td
+                    %input.form-control{type: 'text', placeholder: '0'}
+                %td
+                  %strong #{Random.new.rand(8)} hours
+                      
+                %td
+                  .btn.btn-sm.btn-danger Remove row
+
+              %tr
+                %td
+                - (0..6).each do
+                  %td
+                    %strong #{Random.new.rand(8)} hours
+                %td
+                %td.text-right{colspan: 9}
+                  .btn.btn-sm.btn-default Add row
+
+          .col-md-12
             %button.btn.btn-primary{ type: "submit" } Submit hours
 
     .col-md-12
       .panel.panel-default
         .panel-heading
-          Previous period &nbsp;&nbsp;|&nbsp;&nbsp;12/17/2016 - 12/31/2016&nbsp;&nbsp;
-          .label.label-success Hours submitted
+          %strong Dec 24, 2015 - Dec 31, 2015
+          .label.label-success Submitted
         .panel-body
-          Total hours: 34
+          %table.table.table-condensed
+            %thead
+              - ['Log type', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Total', ''].each do |day|
+                %th= day
+            %tbody
+              %tr
+                %td{style: 'width:20%;'} Service
+
+                - (1..7).each do
+                  %td
+                    #{Random.new.rand(8)} hours
+                      
+                %td
+                  %strong #{Random.new.rand(40)} hours
+
+              %tr
+                %td{style: 'width:20%;'} Break
+
+                - (1..7).each do
+                  %td
+                    #{Random.new.rand(8)} hours
+                      
+                %td
+                  %strong #{Random.new.rand(40)} hours
+
+              %tr
+                %td{style: 'width:20%;'} Lunch
+
+                - (1..7).each do
+                  %td
+                    #{Random.new.rand(8)} hours
+                %td
+                  %strong #{Random.new.rand(40)} hours
+
+              %tr
+                %td{style: 'width:20%;'} Training
+
+                - ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].each do |day|
+                  %td
+                    #{Random.new.rand(8)} hours
+                %td
+                  %strong #{Random.new.rand(40)} hours
+                      
+
+              %tr
+                %td
+                  %strong Total
+                - (0..6).each do
+                  %td
+                    %strong #{Random.new.rand(8)} hours
+                %td
