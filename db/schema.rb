@@ -11,19 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160112022927) do
+ActiveRecord::Schema.define(version: 20160301214011) do
 
-  create_table "periods", force: :cascade do |t|
-    t.datetime "submitted_at"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  create_table "recorded_days", force: :cascade do |t|
-    t.datetime "submitted_at"
-    t.integer  "period_id",    limit: 4, null: false
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+  create_table "hours_logs", force: :cascade do |t|
+    t.date    "date",                     null: false
+    t.float   "hours",        limit: 24,  null: false
+    t.integer "project_id",   limit: 4
+    t.integer "user_id",      limit: 4
+    t.string  "log_type",     limit: 255, null: false
+    t.string  "service_type", limit: 255
   end
 
   create_table "roles", force: :cascade do |t|

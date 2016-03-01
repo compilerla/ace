@@ -1,0 +1,12 @@
+%tr
+  %td{style: 'width:20%;'}
+    %select.form-control
+      = options_for_select(HoursLog.formatted_types)
+
+    %select.form-control
+      = options_for_select(HoursLog.formatted_service_types)
+  = render partial: 'hours_logs/field_cols'
+  
+  - if true
+    %td
+      .btn.btn-sm.btn-danger Remove row

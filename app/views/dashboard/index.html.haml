@@ -22,7 +22,7 @@
 
   .row
     .col-md-12
-      %h3 Some cool project (the one you're on)
+      %h3 Example project
       %br 
   .row
     .col-md-12
@@ -31,59 +31,19 @@
           %strong January 1, 2016 - January 7, 2016 &nbsp;&nbsp;
           .label.label-default 
         .panel-body
-          %table.table.table-condensed
+          %table.table
             %thead
               - ['Log type', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Total', ''].each do |day|
                 %th= day
             %tbody
               %tr
-                %td{style: 'width:20%;'} Service
-
-                - (1..7).each do
-                  %td
-                    %input.form-control{type: 'text', placeholder: '0'}
-                      
-                %td
-                  %strong #{Random.new.rand(8)} hours
-                %td
-
-              %tr
-                %td{style: 'width:20%;'} Break
-
-                - (1..7).each do
-                  %td
-                    %input.form-control{type: 'text', placeholder: '0'}
-                      
-                %td
-                  %strong #{Random.new.rand(8)} hours
-                %td
-
-              %tr
                 %td{style: 'width:20%;'} Lunch
 
-                - (1..7).each do
-                  %td
-                    %input.form-control{type: 'text', placeholder: '0'}
-                %td
-                  %strong #{Random.new.rand(8)} hours
+                = render partial: 'hours_logs/field_cols'
                 %td
 
-              %tr
-                %td{style: 'width:20%;'}
-                  %select.form-control
-                    %option Training
-                    %option VSP
-                    %option Personal Appointment
-
-                - ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].each do |day|
-                  %td
-                    %input.form-control{type: 'text', placeholder: '0'}
-                %td
-                  %strong #{Random.new.rand(8)} hours
+              = render partial: 'hours_logs/row'
                       
-                %td
-                  .btn.btn-sm.btn-danger Remove row
-
               %tr
                 %td
                 - (0..6).each do
@@ -129,12 +89,7 @@
 
               %tr
                 %td{style: 'width:20%;'} Lunch
-
-                - (1..7).each do
-                  %td
-                    #{Random.new.rand(8)} hours
-                %td
-                  %strong #{Random.new.rand(40)} hours
+                = render partial: 'hours_logs/field_cols'
 
               %tr
                 %td{style: 'width:20%;'} Training
