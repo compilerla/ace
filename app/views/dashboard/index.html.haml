@@ -13,7 +13,10 @@
 .container
   .row
     .col-sm-12
-      .alert.alert-danger You have hours that need to be inputed
+      - if flash[:danger].present?
+        .alert.alert-danger= flash[:danger]
+      - if flash[:notice].present?
+        .alert.alert-info= flash[:notice]
 
   .row
     .col-md-12
