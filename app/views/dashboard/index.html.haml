@@ -30,8 +30,8 @@
         .panel-heading
           %strong #{@week_start.strftime("%B %d, %Y")} - #{(@week_start + 6.days).strftime("%B %d, %Y")}
           .label.label-default 
-        .panel-body
-          = form_tag "period", id: 'submission_period' do
+        = form_tag hours_logs_path, id: 'submission_period' do
+          .panel-body
             %table.table
               %thead
                 - ['Log type', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Total', ''].each do |day|
@@ -49,8 +49,8 @@
                   %td.text-right{colspan: 9}
                     = link_to "Add row", create_row_hours_logs_path, class: 'btn btn-sm btn-default', remote: true, method: :post
 
-          .col-md-12
-            %button.btn.btn-primary{ type: "submit" } Submit hours
+            .col-md-12
+              = submit_tag 'Submit hours', class: 'btn btn-primary'
 
 :javascript
   $(document).ready(function(){
