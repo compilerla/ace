@@ -28,83 +28,25 @@
     .col-md-12
       .panel.panel-default
         .panel-heading
-          %strong January 1, 2016 - January 7, 2016 &nbsp;&nbsp;
+          %strong #{@week_start.strftime("%B %d, %Y")} - #{(@week_start + 6.days).strftime("%B %d, %Y")}
           .label.label-default 
         .panel-body
           %table.table
             %thead
               - ['Log type', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Total', ''].each do |day|
                 %th= day
+
             %tbody
-              %tr
-                %td{style: 'width:20%;'} Lunch
-
-                = render partial: 'hours_logs/field_cols'
-                %td
-
-              = render partial: 'hours_logs/row'
+              = render partial: 'hours_logs/row', locals: { week_start: @week_start, hours_type: 'lunch' }
                       
               %tr
                 %td
                 - (0..6).each do
                   %td
-                    %strong #{Random.new.rand(8)} hours
+                    %strong 0 hours
                 %td
                 %td.text-right{colspan: 9}
-                  .btn.btn-sm.btn-default Add row
+                  = link_to "Add row", create_row_hours_logs_path, class: 'btn btn-sm btn-default', remote: true, method: :post
 
           .col-md-12
             %button.btn.btn-primary{ type: "submit" } Submit hours
-
-    .col-md-12
-      .panel.panel-default
-        .panel-heading
-          %strong Dec 24, 2015 - Dec 31, 2015
-          .label.label-success Submitted
-        .panel-body
-          %table.table.table-condensed
-            %thead
-              - ['Log type', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Total', ''].each do |day|
-                %th= day
-            %tbody
-              %tr
-                %td{style: 'width:20%;'} Service
-
-                - (1..7).each do
-                  %td
-                    #{Random.new.rand(8)} hours
-                      
-                %td
-                  %strong #{Random.new.rand(40)} hours
-
-              %tr
-                %td{style: 'width:20%;'} Break
-
-                - (1..7).each do
-                  %td
-                    #{Random.new.rand(8)} hours
-                      
-                %td
-                  %strong #{Random.new.rand(40)} hours
-
-              %tr
-                %td{style: 'width:20%;'} Lunch
-                = render partial: 'hours_logs/field_cols'
-
-              %tr
-                %td{style: 'width:20%;'} Training
-
-                - ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].each do |day|
-                  %td
-                    #{Random.new.rand(8)} hours
-                %td
-                  %strong #{Random.new.rand(40)} hours
-                      
-
-              %tr
-                %td
-                  %strong Total
-                - (0..6).each do
-                  %td
-                    %strong #{Random.new.rand(8)} hours
-                %td

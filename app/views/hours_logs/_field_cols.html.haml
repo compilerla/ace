@@ -1,5 +1,5 @@
-- (1..7).each do
+- (0..6).each do |i|
   %td
-    #{Random.new.rand(8)} hours
+    %input.form-control{name: "typeweek[#{hours_type}][#{week_start + i}]", type: 'text', placeholder: '0'}
 %td
-  %strong #{Random.new.rand(40)} hours
+  %strong 0 hours

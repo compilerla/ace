@@ -5,7 +5,7 @@
 
     %select.form-control
       = options_for_select(HoursLog.formatted_service_types)
-  = render partial: 'hours_logs/field_cols'
+  = render partial: 'hours_logs/field_cols', locals: { hours_type: hours_type, week_start: week_start }
   
   - if true
     %td
