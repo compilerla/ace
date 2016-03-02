@@ -5,8 +5,8 @@
 
     %select.form-control
       = options_for_select(HoursLog.formatted_service_types)
-  = render partial: 'hours_logs/field_cols', locals: { hours_type: hours_type, week_start: week_start }
+  = render partial: 'hours_logs/field_cols', locals: { hours_type: hours_type }
   
   - if true
     %td
-      .btn.btn-sm.btn-danger Remove row
+      .btn.btn-sm.btn-danger.remove-row-button Remove row

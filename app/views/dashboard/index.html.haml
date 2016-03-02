@@ -31,22 +31,30 @@
           %strong #{@week_start.strftime("%B %d, %Y")} - #{(@week_start + 6.days).strftime("%B %d, %Y")}
           .label.label-default 
         .panel-body
-          %table.table
-            %thead
-              - ['Log type', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Total', ''].each do |day|
-                %th= day
+          = form_tag "period", id: 'submission_period' do
+            %table.table
+              %thead
+                - ['Log type', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Total', ''].each do |day|
+                  %th= day
 
-            %tbody
-              = render partial: 'hours_logs/row', locals: { week_start: @week_start, hours_type: 'lunch' }
-                      
-              %tr
-                %td
-                - (0..6).each do
+              %tbody
+                = render partial: 'hours_logs/row', locals: { week_start: @week_start, hours_type: 'lunch' }
+                        
+                %tr
                   %td
-                    %strong 0 hours
-                %td
-                %td.text-right{colspan: 9}
-                  = link_to "Add row", create_row_hours_logs_path, class: 'btn btn-sm btn-default', remote: true, method: :post
+                  - (0..6).each do
+                    %td
+                      %strong 0 hours
+                  %td
+                  %td.text-right{colspan: 9}
+                    = link_to "Add row", create_row_hours_logs_path, class: 'btn btn-sm btn-default', remote: true, method: :post
 
           .col-md-12
             %button.btn.btn-primary{ type: "submit" } Submit hours
+
+:javascript
+  $(document).ready(function(){
+    $('#submission_period').on('click', '.remove-row-button', function(){
+      $(this).closest('tr').remove();
+    });
+  });
