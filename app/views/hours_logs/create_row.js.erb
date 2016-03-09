@@ -1,1 +1,1 @@
-$('#submission_period table tr').last().before("<%=j render partial: 'hours_logs/row', locals: { hours_type: 'lunch' } %>");
+$('#submission_period table tr').last().before("<%=j render partial: 'hours_logs/row', locals: { hours_type: 'lunch', week_start: @week_start } %>");

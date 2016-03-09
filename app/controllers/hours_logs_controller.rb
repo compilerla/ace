@@ -10,7 +10,7 @@ class HoursLogsController < ApplicationController
   end
 
   def create_row
-
+    @week_start = Date.iso8601(params[:week_start])
   end
 
   private

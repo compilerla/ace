@@ -50,7 +50,7 @@
                       %strong 0 hours
                   %td
                   %td.text-right{colspan: 9}
-                    = link_to "Add row", create_row_hours_logs_path, class: 'btn btn-sm btn-default', remote: true, method: :post
+                    = link_to "Add row", create_row_hours_logs_path(week_start: @week_start), class: 'btn btn-sm btn-default', remote: true, method: :post
 
             .col-md-12
               = submit_tag 'Submit hours', class: 'btn btn-primary'
