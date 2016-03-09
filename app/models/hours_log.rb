@@ -12,4 +12,8 @@ class HoursLog < ActiveRecord::Base
   def self.formatted_service_types
      SERVICE_TYPES.map(&:humanize)
   end
+
+  def period
+    @period ||= Period.from_hours_log(self)
+  end
 end

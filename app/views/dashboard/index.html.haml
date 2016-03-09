@@ -55,6 +55,8 @@
             .col-md-12
               = submit_tag 'Submit hours', class: 'btn btn-primary'
 
+  = HoursLog.first.period.inspect
+
 :javascript
   $(document).ready(function(){
     $('#submission_period').on('click', '.remove-row-button', function(){
