@@ -1,5 +1,6 @@
 class HoursLogsController < ApplicationController
   def create
+    binding.pry
     if process_hours_data
       flash[:notice] = 'Success'
     else
@@ -15,18 +16,27 @@ class HoursLogsController < ApplicationController
   private
 
   def process_hours_data
-    HoursLog::TYPES.each do |log_type|
-      if params['typeweeks'][log_type].present?
-        return false unless valid_type_week?(params[log_type])
-      end
-
+    params[:typeweeks].each_pair do |k, v|
+      process_type_week(v)
     end
 
     return true
   end
 
-  def valid_type_week?(type_week_params)
-    # Todo
-    true
+  private
+
+  def process_type_week(type_week_params)
+    type_week_params[:hours].each_pair do |date, hours|
+      log_attrs = {
+        date: Date.iso8601(date),
+        hours: hours,
+        log_type: type_week_params[:log_type],
+        service_type: type_week_params[:service_type]
+      }
+
+      HoursLog.create!(log_attrs)
+    end
+
   end
+
 end
