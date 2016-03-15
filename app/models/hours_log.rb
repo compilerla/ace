@@ -13,7 +13,7 @@ class HoursLog < ActiveRecord::Base
      SERVICE_TYPES.map(&:humanize)
   end
 
-  def period
-    @period ||= Period.from_hours_log(self)
+  def submission_period
+    @period ||= SubmissionPeriod.from_hours_log(self)
   end
 end

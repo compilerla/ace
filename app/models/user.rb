@@ -4,4 +4,13 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  def projects
+
+  end
+
+  def outstanding_submission_periods
+    # TODO
+    3.times.map{SubmissionPeriod.new(Date.today)}
+  end
 end

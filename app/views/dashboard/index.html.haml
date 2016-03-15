@@ -1,14 +1,4 @@
-.navbar.navbar-default
-  .container-fluid
-    .navbar-header
-      .navbar-brand= link_to 'American Conservation Experience', '/'
-
-    .collapse.navbar-collapse
-      %ul.nav.navbar-nav.navbar-right
-        - if user_signed_in?
-          %li= link_to "Log out", destroy_user_session_path(method: :delete)
-        - else
-          %li= link_to "Log in", new_user_session_path
+= render 'nav'
 
 .container
   .row
@@ -23,39 +13,38 @@
       .page-header
         %h2 Dashboard
 
-  .row
-    .col-md-12
-      %h3 Example project
-      %br 
-  .row
-    .col-md-12
-      .panel.panel-default
-        .panel-heading
-          %strong #{@week_start.strftime("%B %d, %Y")} - #{(@week_start + 6.days).strftime("%B %d, %Y")}
-          .label.label-default 
-        = form_tag hours_logs_path, id: 'submission_period' do
-          .panel-body
-            %table.table
-              %thead
-                - ['Log type', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Total', ''].each do |day|
-                  %th= day
+  - current_user.outstanding_submission_periods.each do |period|
+    .row
+      .col-md-12
+        %h3 Project
+        %br 
+    .row
+      .col-md-12
+        .panel.panel-default
+          .panel-heading
+            %strong #{@week_start.strftime("%B %d, %Y")} - #{(@week_start + 6.days).strftime("%B %d, %Y")}
+            .label.label-default 
+          = form_tag hours_logs_path, id: 'submission_period' do
+            .panel-body
+              %table.table
+                %thead
+                  - ['Log type', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Total', ''].each do |day|
+                    %th= day
 
-              %tbody
-                = render partial: 'hours_logs/row', locals: { week_start: @week_start, hours_type: 'lunch' }
-                        
-                %tr
-                  %td
-                  - (0..6).each do
+                %tbody
+                  = render partial: 'hours_logs/row', locals: { week_start: @week_start, hours_type: 'lunch' }
+                          
+                  %tr
                     %td
-                      %strong 0 hours
-                  %td
-                  %td.text-right{colspan: 9}
-                    = link_to "Add row", create_row_hours_logs_path(week_start: @week_start), class: 'btn btn-sm btn-default', remote: true, method: :post
+                    - (0..6).each do
+                      %td
+                        %strong 0 hours
+                    %td
+                    %td.text-right{colspan: 9}
+                      = link_to "Add row", create_row_hours_logs_path(week_start: @week_start), class: 'btn btn-sm btn-default', remote: true, method: :post
 
-            .col-md-12
-              = submit_tag 'Submit hours', class: 'btn btn-primary'
-
-  = HoursLog.first.period.inspect
+              .col-md-12
+                = submit_tag 'Submit hours', class: 'btn btn-primary'
 
 :javascript
   $(document).ready(function(){

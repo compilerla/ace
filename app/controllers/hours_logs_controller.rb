@@ -1,4 +1,6 @@
 class HoursLogsController < ApplicationController
+  before_filter :authenticate_user!
+  
   def create
     binding.pry
     if process_hours_data
