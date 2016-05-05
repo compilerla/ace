@@ -40,7 +40,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # protected
 
   def verify_existing_member
-    binding.pry
+    unless FileMaker::Member.find_by_email(sign_up_params[:email])
+      flash[:error] = "We couldn't find that email in our system"
+      redirect_to new_user_registration_path
+    end
   end
 
   # If you have extra params to permit, append them to the sanitizer.
