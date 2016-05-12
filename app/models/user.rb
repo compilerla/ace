@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   def projects
-
+    
   end
 
   def outstanding_submission_periods

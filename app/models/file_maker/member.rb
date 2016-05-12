@@ -1,10 +1,11 @@
-class FileMaker::Member
+class FileMaker::Member < DbRecord
+  set_table_name "member"
+
   def self.find_by_email(email)
     return nil unless email.present?
     
-    connection = ActiveRecord::Base.connection
     safe_email = connection.quote(email)
-    query = "SELECT * FROM member WHERE email = #{safe_email}"
+    query = "SELECT * FROM #{table_name} WHERE email = #{safe_email}"
     connection.execute(query)
   end
 end
