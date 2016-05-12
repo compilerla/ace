@@ -5,8 +5,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  validates_presence_of :member_id
+
   def projects
-    
+    FileMaker::Project.for_member(member_id)
   end
 
   def outstanding_submission_periods

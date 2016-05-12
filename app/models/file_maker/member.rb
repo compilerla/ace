@@ -6,6 +6,6 @@ class FileMaker::Member < DbRecord
     
     safe_email = connection.quote(email)
     query = "SELECT * FROM #{table_name} WHERE email = #{safe_email}"
-    connection.execute(query)
+    connection.execute(query).first
   end
 end
