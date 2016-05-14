@@ -87,36 +87,36 @@ ActiveRecord::Schema.define(version: 20160512001513) do
   add_index "member_term", ["id"], name: "index_id", using: :btree
 
   create_table "project", force: :cascade do |t|
-    t.string   "ace_id",             limit: 2044, null: false
-    t.string   "project_number",     limit: 2044, null: false
-    t.date     "start_date"
-    t.date     "end_date"
-    t.string   "invoice_unit",       limit: 2044, null: false
-    t.decimal  "invoice_rate"
-    t.string   "leader",             limit: 2044, null: false
-    t.string   "title",              limit: 2044, null: false
-    t.string   "crew_region",        limit: 2044, null: false
-    t.string   "hitch",              limit: 2044, null: false
-    t.string   "type",               limit: 2044, null: false
-    t.string   "contact_name",       limit: 2044, null: false
-    t.string   "contact_title",      limit: 2044, null: false
-    t.string   "contact_phone",      limit: 2044, null: false
-    t.string   "contact_email",      limit: 2044, null: false
-    t.string   "contact_info",       limit: 2044, null: false
-    t.datetime "creation_date",                   null: false
-    t.datetime "modification_date",               null: false
-    t.string   "creation_staff",     limit: 2044, null: false
-    t.string   "modification_staff", limit: 2044, null: false
-    t.string   "location",           limit: 2044, null: false
-    t.string   "PLC",                limit: 2044, null: false
-    t.string   "dollars_allocated",  limit: 2044, null: false
-    t.string   "dollars_invoiced",   limit: 2044, null: false
-    t.string   "dollars_remaining",  limit: 2044, null: false
+    t.string  "ace_id",             limit: 2044, null: false
+    t.string  "project_number",     limit: 2044, null: false
+    t.date    "start_date"
+    t.date    "end_date"
+    t.string  "invoice_unit",       limit: 2044, null: false
+    t.decimal "invoice_rate"
+    t.string  "leader",             limit: 2044, null: false
+    t.string  "title",              limit: 2044, null: false
+    t.string  "crew_region",        limit: 2044, null: false
+    t.string  "hitch",              limit: 2044, null: false
+    t.string  "type",               limit: 2044, null: false
+    t.string  "contact_name",       limit: 2044, null: false
+    t.string  "contact_title",      limit: 2044, null: false
+    t.string  "contact_phone",      limit: 2044, null: false
+    t.string  "contact_email",      limit: 2044, null: false
+    t.string  "contact_info",       limit: 2044, null: false
+    t.date    "creation_date"
+    t.date    "modification_date"
+    t.string  "creation_staff",     limit: 2044, null: false
+    t.string  "modification_staff", limit: 2044, null: false
+    t.string  "location",           limit: 2044, null: false
+    t.string  "PLC",                limit: 2044, null: false
+    t.string  "dollars_allocated",  limit: 2044, null: false
+    t.string  "dollars_invoiced",   limit: 2044, null: false
+    t.string  "dollars_remaining",  limit: 2044, null: false
   end
 
   create_table "project_member", force: :cascade do |t|
-    t.integer "project_id",                   null: false
-    t.integer "member_id",                    null: false
+    t.integer "project_id"
+    t.integer "member_id"
     t.string  "ace_id",          limit: 2044, null: false
     t.string  "title",           limit: 2044, null: false
     t.string  "position",        limit: 2044, null: false
@@ -124,8 +124,8 @@ ActiveRecord::Schema.define(version: 20160512001513) do
     t.date    "start_date"
     t.date    "end_date"
     t.string  "cost_unit",       limit: 2044, null: false
-    t.decimal "unit_rate",                    null: false
-    t.decimal "match_rate",                   null: false
+    t.decimal "unit_rate"
+    t.decimal "match_rate"
     t.string  "EAP",             limit: 2044, null: false
     t.string  "PLC",             limit: 2044, null: false
   end

@@ -8,7 +8,9 @@ class User < ActiveRecord::Base
   validates_presence_of :member_id
 
   def projects
-    FileMaker::Project.for_member(member_id)
+    FileMaker::Project.for_member(member_id).map do |fm_project|
+      Project.new(fm_project)
+    end
   end
 
   def outstanding_submission_periods
