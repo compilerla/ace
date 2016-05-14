@@ -18,13 +18,13 @@
       .col-md-12
         %h3= project.title
         %br 
-        
+
     - project.submission_periods.each do |period|
       .row
         .col-md-12
           .panel.panel-default
             .panel-heading
-              %strong #{@week_start.strftime("%B %d, %Y")} - #{(@week_start + 6.days).strftime("%B %d, %Y")}
+              %strong #{period.period_start.strftime("%B %d, %Y")} - #{(period.period_start + 6.days).strftime("%B %d, %Y")}
               .label.label-default 
             = form_tag hours_logs_path, id: 'submission_period' do
               .panel-body
@@ -34,7 +34,7 @@
                       %th= day
 
                   %tbody
-                    = render partial: 'hours_logs/row', locals: { week_start: @week_start, hours_type: 'lunch' }
+                    = render partial: 'hours_logs/row', locals: { week_start: period.period_start, hours_type: 'lunch' }
                             
                     %tr
                       %td
@@ -43,7 +43,7 @@
                           %strong 0 hours
                       %td
                       %td.text-right{colspan: 9}
-                        = link_to "Add row", create_row_hours_logs_path(week_start: @week_start), class: 'btn btn-sm btn-default', remote: true, method: :post
+                        = link_to "Add row", create_row_hours_logs_path(week_start: period.period_start), class: 'btn btn-sm btn-default', remote: true, method: :post
 
                 .col-md-12
                   = submit_tag 'Submit hours', class: 'btn btn-primary'

@@ -7,4 +7,8 @@ class SubmissionPeriod
     start_date = hours_log.date.at_beginning_of_week
     self.new(start_date)
   end
+
+  def period_start
+    @start_date
+  end
 end
