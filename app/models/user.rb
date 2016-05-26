@@ -13,8 +13,8 @@ class User < ActiveRecord::Base
     end
   end
 
-  def outstanding_submission_periods
-    # TODO
-    3.times.map{SubmissionPeriod.new(Date.today)}
+  def terms
+    terms = FileMaker::MemberTerm.for_member(member_id)
+    terms.map{ |raw_term| MemberTerm.new(raw_term) }
   end
 end

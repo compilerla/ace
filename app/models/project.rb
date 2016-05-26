@@ -1,15 +1,20 @@
-class ::Project
+class Project
   # Initialized with an instance of FileMaker::Project
   def initialize(fm_project)
     @fm_project = fm_project
   end
 
-  def submission_periods
-    date = start_date
+  def submission_periods_for_user(user)
+    term = user.terms.first
+
+    intersect_start_date = [start_date, term.start_date].max
+    intersect_end_date = [end_date, term.end_date].min
+    iterator_date = intersect_start_date
+
     periods = []
-    while(date < end_date)
-      periods << SubmissionPeriod.new(date)
-      date += 1.week
+    while(iterator_date < intersect_end_date)
+      periods << SubmissionPeriod.new(iterator_date)
+      iterator_date += 1.week
     end
 
     periods

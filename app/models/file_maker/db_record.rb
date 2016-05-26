@@ -20,12 +20,12 @@ module FileMaker
       end
 
       def table_name
-        raise TableNameNotSet unless @@table_name
-        @@table_name
+        raise TableNameNotSet unless @table_name
+        @table_name
       end
 
       def set_table_name(table_name)
-        @@table_name = table_name
+        @table_name = table_name
       end
 
       def connection

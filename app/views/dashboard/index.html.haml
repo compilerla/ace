@@ -19,7 +19,7 @@
         %h3= project.title
         %br 
 
-    - project.submission_periods.each do |period|
+    - project.submission_periods_for_user(current_user).each do |period|
       .row
         .col-md-12
           .panel.panel-default
