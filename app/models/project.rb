@@ -1,8 +1,22 @@
 class Project
-  # Initialized with an instance of FileMaker::Project
-  def initialize(fm_project)
-    @fm_project = fm_project
+  include Filemaker::Model
+
+  database 'JoshuaDevelopment'
+  layout :project
+
+  string :title
+  integer :id, identity: true
+
+  has_many :project_member, 
+
+  class << self
+    def for_member(member_id)
+      query = "SELECT * FROM #{table_name} INNER JOIN project_member on project.id = project_member.project_id WHERE project_member.member_id = #{member_id} AND project.start_date IS NOT NULL"
+      p query
+      connection.execute(query)
+    end
   end
+
 
   def submission_periods_for_user(user)
     term = user.terms.first
