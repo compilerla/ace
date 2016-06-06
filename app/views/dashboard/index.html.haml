@@ -20,37 +20,38 @@
         %br 
 
     - project_member.submission_periods_for_user(current_user).each do |period|
-      .row
-        .col-md-12
-          .panel.panel-default
-            .panel-heading
-              %strong #{period.period_start.strftime("%B %d, %Y")} - #{(period.period_start + 6.days).strftime("%B %d, %Y")}
-              .label.label-default 
-            = form_tag hours_logs_path, id: 'submission_period' do
-              .panel-body
-                %table.table
-                  %thead
-                    - ['Log type', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Total', ''].each do |day|
-                      %th= day
+      - unless period.submitted_for?(current_user, project_member.project_id)
+        .row
+          .col-md-12
+            .panel.panel-default
+              .panel-heading
+                %strong #{period.period_start.strftime("%B %d, %Y")} - #{(period.period_start + 6.days).strftime("%B %d, %Y")}
+                .label.label-default 
+              = form_tag hours_logs_path, id: 'submission_period' do
+                .panel-body
+                  %table.table
+                    %thead
+                      - ['Log type', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Total', ''].each do |day|
+                        %th= day
 
-                  %tbody
-                    = render partial: 'hours_logs/row', locals: { week_start: period.period_start, hours_type: 'lunch' }
-                            
-                    %tr
-                      %td
-                      - (0..6).each do
+                    %tbody
+                      = render partial: 'hours_logs/row', locals: { week_start: period.period_start, hours_type: 'lunch', project_id: project_member.project_id }
+                              
+                      %tr
                         %td
-                          %strong 0 hours
-                      %td
-                      %td.text-right{colspan: 9}
-                        = link_to "Add row", create_row_hours_logs_path(week_start: period.period_start), class: 'btn btn-sm btn-default', remote: true, method: :post
+                        - (0..6).each do
+                          %td
+                            %strong 0 hours
+                        %td
+                        %td.text-right{colspan: 9}
+                          = link_to "Add row", create_row_hours_logs_path(week_start: period.period_start), class: 'btn btn-sm btn-default', remote: true, method: :post
 
-                .col-md-12
-                  = submit_tag 'Submit hours', class: 'btn btn-primary'
+                  .col-md-12
+                    = submit_tag 'Submit hours', class: 'btn btn-primary'
 
-:javascript
-  $(document).ready(function(){
-    $('#submission_period').on('click', '.remove-row-button', function(){
-      $(this).closest('tr').remove();
+  :javascript
+    $(document).ready(function(){
+      $('#submission_period').on('click', '.remove-row-button', function(){
+        $(this).closest('tr').remove();
+      });
     });
-  });

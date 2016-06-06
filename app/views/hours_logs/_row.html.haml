@@ -1,6 +1,7 @@
 - uuid = Time.now.to_i
 %tr
   %td{style: 'width:20%;'}
+    = hidden_field_tag "typeweeks[#{uuid}][project_id]", project_id
     = select_tag "typeweeks[#{uuid}][log_type]", options_for_select(HoursLog.formatted_types), class: 'form-control'
 
     = select_tag "typeweeks[#{uuid}][service_type]", options_for_select(HoursLog.formatted_service_types), class: 'form-control'

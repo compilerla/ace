@@ -2,7 +2,6 @@ class HoursLogsController < ApplicationController
   before_filter :authenticate_user!
   
   def create
-    binding.pry
     if process_hours_data
       flash[:notice] = 'Success'
     else
@@ -33,7 +32,9 @@ class HoursLogsController < ApplicationController
         date: Date.iso8601(date),
         hours: hours,
         log_type: type_week_params[:log_type],
-        service_type: type_week_params[:service_type]
+        service_type: type_week_params[:service_type],
+        user: current_user,
+        project_id: type_week_params[:project_id]
       }
 
       HoursLog.create!(log_attrs)
