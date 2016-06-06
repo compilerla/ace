@@ -5,9 +5,9 @@ class Project
   layout :project
 
   string :title
-  integer :id, identity: true
+  string :id, identity: true
 
-  has_many :project_member, 
+  has_many :project_member, reference_key: :id, source_key: :project_id
 
   class << self
     def for_member(member_id)

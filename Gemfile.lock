@@ -1,3 +1,14 @@
+GIT
+  remote: git://github.com/compilerla/filemaker-ruby.git
+  revision: ef83459a0643b4e4332717084748e3b7f9c05c08
+  branch: master
+  specs:
+    filemaker (0.0.15)
+      activemodel
+      faraday
+      nokogiri
+      typhoeus
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -72,11 +83,6 @@ GEM
     faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.10)
-    filemaker (0.0.15)
-      activemodel
-      faraday
-      nokogiri
-      typhoeus
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     haml (4.0.7)
@@ -188,7 +194,7 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.1.0)
   devise
-  filemaker
+  filemaker!
   haml
   jbuilder (~> 2.0)
   jquery-rails

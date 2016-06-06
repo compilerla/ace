@@ -5,8 +5,10 @@ class ProjectMember
   layout :project_member
 
   integer :id, identity: true
-  integer :member_id
-  integer :project_id
+  string :member_id
+  string :project_id
+
+  string :title, fm_name: 'project::title'
   
   belongs_to :project
   belongs_to :member
