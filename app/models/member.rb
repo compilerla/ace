@@ -5,7 +5,7 @@ class Member
   layout :member 
 
   string :email
-  integer :id, identity: true
+  string :id, identity: true
 
   has_many :project_member
 

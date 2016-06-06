@@ -13,13 +13,13 @@
       .page-header
         %h2 Dashboard
 
-  - current_user.projects.each do |project|
+  - current_user.project_members.each do |project_member|
     .row
       .col-md-12
-        %h3= project.title
+        %h3= project_member.title
         %br 
 
-    - project.submission_periods_for_user(current_user).each do |period|
+    - project_member.submission_periods_for_user(current_user).each do |period|
       .row
         .col-md-12
           .panel.panel-default
