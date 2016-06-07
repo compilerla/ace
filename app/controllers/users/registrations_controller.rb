@@ -40,7 +40,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # protected
 
   def verify_existing_member
-    unless (@existing_member = FileMaker::Member.find_by_email(sign_up_params[:email]))
+    unless (@existing_member = Member.find_by_email(sign_up_params[:email]))
       flash[:error] = "We couldn't find that email in our system"
       redirect_to new_user_registration_path
     end
@@ -48,7 +48,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def sign_up_params
     return super unless @existing_member
-    super.merge(member_id: @existing_member['id'])
+    super.merge(member_id: @existing_member.id)
   end
 
   # If you have extra params to permit, append them to the sanitizer.
