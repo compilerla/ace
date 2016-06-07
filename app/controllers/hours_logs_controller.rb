@@ -18,7 +18,7 @@ class HoursLogsController < ApplicationController
 
   def process_hours_data
     params[:typeweeks].each_pair do |k, v|
-      process_type_week(v)
+      process_type_week(v, params[:project_id])
     end
 
     return true
@@ -26,7 +26,7 @@ class HoursLogsController < ApplicationController
 
   private
 
-  def process_type_week(type_week_params)
+  def process_type_week(type_week_params, project_id)
     type_week_params[:hours].each_pair do |date, hours|
       log_attrs = {
         date: Date.iso8601(date),
@@ -34,7 +34,7 @@ class HoursLogsController < ApplicationController
         log_type: type_week_params[:log_type],
         service_type: type_week_params[:service_type],
         user: current_user,
-        project_id: type_week_params[:project_id]
+        project_id: project_id
       }
 
       HoursLog.create!(log_attrs)
