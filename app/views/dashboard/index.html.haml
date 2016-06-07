@@ -16,7 +16,8 @@
   - current_user.project_members.each do |project_member|
     .row
       .col-md-12
-        %h3= project_member.title
+        %h3= project_member.project.title || "Untitled project"
+        %h4= project_member.title
         %br 
 
     - project_member.submission_periods_for_user(current_user).each do |period|
