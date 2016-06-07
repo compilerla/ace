@@ -3,3 +3,9 @@ development:
     host: <%= ENV['FILEMAKER_HOST'] %>
     account_name: <%= ENV['FILEMAKER_ACCOUNT_NAME'] %>
     password: <%= ENV['FILEMAKER_PASSWORD'] %>
+
+production:
+  default:
+    host: <%= ENV['FILEMAKER_HOST'] %>
+    account_name: <%= ENV['FILEMAKER_ACCOUNT_NAME'] %>
+    password: <%= ENV['FILEMAKER_PASSWORD'] %>
