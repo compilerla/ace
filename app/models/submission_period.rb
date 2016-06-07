@@ -21,4 +21,12 @@ class SubmissionPeriod
   def submitted_for?(user, project_id)
     hours_logs.where(user: user, project_id: project_id).any?
   end
+
+  def start_date
+    @start_date
+  end
+
+  def end_date
+    @start_date + PERIOD_LENGTH
+  end
 end

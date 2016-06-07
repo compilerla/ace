@@ -24,7 +24,7 @@
       - unless period.submitted_for?(current_user, project_member.project_id)
         .row
           .col-md-12
-            .panel.panel-default
+            .panel{ class: (Date.today  > period.end_date ? 'panel-warning' : 'panel-default') }
               .panel-heading
                 %strong #{period.period_start.strftime("%B %d, %Y")} - #{(period.period_start + 6.days).strftime("%B %d, %Y")}
                 .label.label-default 
