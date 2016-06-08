@@ -10,8 +10,14 @@
 
   .row
     .col-md-12
-      .page-header
-        %h2 Dashboard
+      %h2 Dashboard
+      %ul.nav.nav-tabs
+        %li{role: 'presentation', class: (params[:f].blank? || params[:f] == 'unsubmitted' ? 'active' : '')}
+          = link_to "Not submitted", "?f=unsubmitted"
+        %li{role: 'presentation', class: (params[:f] == 'awaiting' ? 'active' : '')}
+          = link_to "Awaiting approval", "?f=awaiting"
+        %li{role: 'presentation', class: (params[:f] == 'approved' ? 'active' : '')}
+          = link_to "Approved", "?f=approved"
 
   - current_user.project_members.each do |project_member|
     .row
