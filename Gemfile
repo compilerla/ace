@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '2.2.0'
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'
@@ -37,6 +39,7 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'rolify'
 gem 'filemaker', github: 'compilerla/filemaker-ruby', branch: 'master'
 gem 'rails_12factor'
+gem 'rails_admin'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

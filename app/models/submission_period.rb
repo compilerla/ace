@@ -19,7 +19,8 @@ class SubmissionPeriod
   end
 
   def submitted_for?(user, project_id)
-    hours_logs.where(user: user, project_id: project_id).any?
+    false
+    # hours_logs.where(user: user, project_id: project_id).any?
   end
 
   def start_date

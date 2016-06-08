@@ -27,17 +27,22 @@ class HoursLogsController < ApplicationController
   private
 
   def process_type_week(type_week_params, project_id)
-    type_week_params[:hours].each_pair do |date, hours|
-      log_attrs = {
-        date: Date.iso8601(date),
-        hours: hours,
-        log_type: type_week_params[:log_type],
-        service_type: type_week_params[:service_type],
-        user: current_user,
-        project_id: project_id
-      }
+    ActiveRecord::Base.transaction do
+      submission = Submission.create(user: current_user,
+                        project_id: project_id)
 
-      HoursLog.create!(log_attrs)
+      type_week_params[:hours].each_pair do |date, hours|
+        log_attrs = {
+          date: Date.iso8601(date),
+          hours: hours,
+          log_type: type_week_params[:log_type],
+          service_type: type_week_params[:service_type],
+          user: current_user
+        }
+
+        submission.hours_logs.create!(log_attrs)
+      end
+
     end
 
   end

@@ -11,18 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160512001513) do
+ActiveRecord::Schema.define(version: 20160608162816) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "hours_logs", force: :cascade do |t|
-    t.date    "date",         null: false
-    t.float   "hours",        null: false
-    t.integer "project_id"
+    t.date    "date",          null: false
+    t.float   "hours",         null: false
     t.integer "user_id"
-    t.string  "log_type",     null: false
+    t.string  "log_type",      null: false
     t.string  "service_type"
+    t.integer "submission_id", null: false
   end
 
   create_table "member", force: :cascade do |t|
@@ -140,6 +140,13 @@ ActiveRecord::Schema.define(version: 20160512001513) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
+
+  create_table "submissions", force: :cascade do |t|
+    t.integer  "user_id",    null: false
+    t.integer  "project_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
