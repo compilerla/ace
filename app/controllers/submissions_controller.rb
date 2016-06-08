@@ -9,6 +9,8 @@ class SubmissionsController < ApplicationController
         'unapproved'
       when 'approved'
         'approved'
+      else 'unsubmitted'
+        'unsubmitted'
       end
   end
 end

@@ -1,5 +1,5 @@
 - current_user.submissions.unapproved.each do |submission|
-  .row
+  .row.margin-top
     .col-md-12
       .panel{ class: (Date.today  > submission.period.end_date ? 'panel-warning' : 'panel-default') }
         .panel-heading
@@ -9,21 +9,24 @@
           = hidden_field_tag "project_id", submission.project_id
           .panel-body
             %table.table
-              %thead
-                - ['Log type', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Total', ''].each do |day|
-                  %th= day
+              = render partial: 'period_table_header', locals: { period: submission.period }
 
               %tbody
-                = render partial: 'hours_logs/row', locals: { week_start: submission.period.period_start, hours_type: 'lunch' }
+                - submission.hours_logs_by_log_type.each_pair do |log_type, hours_logs|
+                  %tr
+                    %td{style: 'width:20%;'}
+
+                    - hours_logs.each do |log|
+                      %td= log.hours
+
+                    %td
+                      %strong= hours_logs.inject(0){|sum, l| sum + l.hours} 
                         
                 %tr
                   %td
                   - (0..6).each do
                     %td
                       %strong 0 hours
-                  %td
-                  %td.text-right{colspan: 9}
-                    = link_to "Add row", create_row_hours_logs_path(week_start: submission.period.period_start), class: 'btn btn-sm btn-default addrowbutton', remote: true, method: :post
 
             .col-md-12
               = submit_tag 'Submit hours', class: 'btn btn-primary'

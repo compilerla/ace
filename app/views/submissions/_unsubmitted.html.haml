@@ -16,9 +16,7 @@
               = hidden_field_tag "project_id", project_member.project_id
               .panel-body
                 %table.table
-                  %thead
-                    - ['Log type', period.array_of_days, 'Total', ''].flatten.each do |day|
-                      %th= day
+                  = render partial: 'period_table_header', locals: { period: period }
 
                   %tbody
                     = render partial: 'hours_logs/row', locals: { week_start: period.period_start, hours_type: 'lunch' }
@@ -29,7 +27,7 @@
                         %td
                           %strong 0 hours
                       %td
-                      %td.text-right{colspan: 9}
+                      %td.text-right
                         = link_to "Add row", create_row_hours_logs_path(week_start: period.period_start), class: 'btn btn-sm btn-default addrowbutton', remote: true, method: :post
 
                 .col-md-12
