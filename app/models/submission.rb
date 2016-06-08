@@ -4,4 +4,14 @@ class Submission < ActiveRecord::Base
 
   has_many :hours_logs
   belongs_to :user
+
+  scope :approved,
+        ->{ where("approved IS NOT NULL") }
+
+  scope :unapproved,
+        ->{ where("approved IS NULL") }
+
+  def period
+    @period ||= SubmissionPeriod.new(hours_logs.order("date DESC").first.date)
+  end
 end

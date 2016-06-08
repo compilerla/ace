@@ -1,0 +1,6 @@
+- if current_user.submissions.approved.any?
+  - current_user.submissions.approved.each do |submission|
+    = submission.created_at
+- else
+  .margin-top
+    %p You currently don't have any approved submissions

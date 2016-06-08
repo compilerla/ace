@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
 
   validates_presence_of :member_id
 
+  has_many :submissions
+
   def project_members
     ProjectMember.where(member_id: member_id)
   end
