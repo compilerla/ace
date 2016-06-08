@@ -17,7 +17,7 @@
               .panel-body
                 %table.table
                   %thead
-                    - ['Log type', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Total', ''].each do |day|
+                    - ['Log type', period.array_of_days, 'Total', ''].flatten.each do |day|
                       %th= day
 
                   %tbody

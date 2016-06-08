@@ -24,10 +24,19 @@ class SubmissionPeriod
   end
 
   def start_date
-    @start_date
+    @start_date - @start_date.wday
   end
 
   def end_date
     @start_date + PERIOD_LENGTH
+  end
+
+  def array_of_days
+    days = []
+    for i in 0..6
+      days << (@start_date + i).strftime("%A")
+    end
+
+    days
   end
 end
