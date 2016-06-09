@@ -15,7 +15,7 @@
                 %tbody
                   - submission.hours_logs_by_log_type.each_pair do |log_type, hours_logs|
                     %tr
-                      %td{style: 'width:20%;'}
+                      %td{style: 'width:20%;'}= log_type
 
                       - hours_logs.each do |log|
                         %td= log.hours
@@ -29,8 +29,6 @@
                       %td
                         %strong 0 hours
 
-              .col-md-12
-                = submit_tag 'Submit hours', class: 'btn btn-primary'
 - else
   .margin-top
     %p You currently don't have any approved submissions

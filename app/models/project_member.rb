@@ -24,11 +24,11 @@ class ProjectMember
 
       intersect_start_date = [start_date, term.start_date].max
       intersect_end_date = [end_date, term.end_date].min
-      iterator_date = intersect_start_date
+      iterator_date = intersect_end_date
 
-      while(iterator_date <= intersect_end_date)
+      while(iterator_date >= intersect_start_date)
         periods << SubmissionPeriod.new(iterator_date)
-        iterator_date += 1.week
+        iterator_date -= 1.week
       end
       
     end

@@ -1,32 +1,35 @@
-- current_user.submissions.unapproved.each do |submission|
-  .row.margin-top
-    .col-md-12
-      .panel{ class: (Date.today  > submission.period.end_date ? 'panel-warning' : 'panel-default') }
-        .panel-heading
-          %strong #{submission.period.period_start.strftime("%B %d, %Y")} - #{(submission.period.period_start + 6.days).strftime("%B %d, %Y")}
-          .label.label-default 
-        = form_tag hours_logs_path, id: 'submission_period' do
-          = hidden_field_tag "project_id", submission.project_id
-          .panel-body
-            %table.table
-              = render partial: 'period_table_header', locals: { period: submission.period }
+- if current_user.submissions.unapproved.any?
+  - current_user.submissions.unapproved.each do |submission|
+    .row.margin-top
+      .col-md-12
+        .panel{ class: (Date.today  > submission.period.end_date ? 'panel-warning' : 'panel-default') }
+          .panel-heading
+            %strong #{submission.period.period_start.strftime("%B %d, %Y")} - #{(submission.period.period_start + 6.days).strftime("%B %d, %Y")}
+            .label.label-default 
+          = form_tag hours_logs_path, id: 'submission_period' do
+            = hidden_field_tag "project_id", submission.project_id
+            .panel-body
+              %table.table
+                = render partial: 'period_table_header', locals: { period: submission.period }
 
-              %tbody
-                - submission.hours_logs_by_log_type.each_pair do |log_type, hours_logs|
+                %tbody
+                  - submission.hours_logs_by_log_type.each_pair do |log_type, hours_logs|
+                    %tr
+                      %td{style: 'width:20%;'}
+
+                      - hours_logs.each do |log|
+                        %td= log.hours
+
+                      %td
+                        %strong= hours_logs.inject(0){|sum, l| sum + l.hours} 
+                          
                   %tr
-                    %td{style: 'width:20%;'}
-
-                    - hours_logs.each do |log|
-                      %td= log.hours
-
                     %td
-                      %strong= hours_logs.inject(0){|sum, l| sum + l.hours} 
-                        
-                %tr
-                  %td
-                  - (0..6).each do
-                    %td
-                      %strong 0 hours
+                    - (0..6).each do
+                      %td
+                        %strong 0 hours
 
-            .col-md-12
-              = submit_tag 'Submit hours', class: 'btn btn-primary'
+              .col-md-12
+                = submit_tag 'Submit hours', class: 'btn btn-primary'
+- else
+  %p.margin-top You currently don't have any hours awaiting approval.

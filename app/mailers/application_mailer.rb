@@ -3,8 +3,10 @@ class ApplicationMailer < ActionMailer::Base
   layout 'mailer'
 
   def submission_approved(submission)
+    @submission = submission
+
     mail({
-      to: 'corwinstephen@gmail.com',
+      to: submission.user.email,
       subject: "Your hours have been approved"
     })
   end
