@@ -3,9 +3,9 @@ class HoursLogsController < ApplicationController
   
   def create
     if process_hours_data
-      flash[:notice] = 'Success'
+      flash[:success] = 'Your hours were submitted successfully'
     else
-      flash[:danger] = 'Failure'
+      flash[:error] = 'Uh oh. Something went wrong.'
     end
     redirect_to root_path
   end

@@ -15,4 +15,15 @@ class SubmissionsController < ApplicationController
 
     @accumulated_hours = HoursLog.accumulated_hours_for_user(current_user)
   end
+
+  def destroy
+    submission = Submission.find(params[:id])
+    if submission.destroy
+      flash[:success] = "You successfuly unsubmitted your hours"
+    else
+      flash[:error] = "Uh oh. Something went wrong."
+    end
+
+    redirect_to root_path
+  end
 end

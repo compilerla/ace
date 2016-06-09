@@ -17,6 +17,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :submissions, only: [:destroy]
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

@@ -1,4 +1,8 @@
 .container.margin-top
-  .col-xs-12
-    - if flash[:error].present?
-      .alert.alert-danger= flash[:error]
+  .row
+    .col-xs-12
+      - if flash[:success].present?
+        .alert.alert-success= flash[:success]
+
+      - if flash[:error].present?
+        .alert.alert-danger= flash[:error]
