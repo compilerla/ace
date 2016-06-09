@@ -12,7 +12,7 @@
             .panel-heading
               %strong #{period.start_date.strftime("%B %d, %Y")} - #{(period.start_date + 6.days).strftime("%B %d, %Y")}
               .label.label-default 
-            = form_tag hours_logs_path, id: 'submission_period' do
+            = form_tag hours_logs_path, class: 'submission_period' do
               = hidden_field_tag "project_id", project_member.project_id
               .panel-body
                 %table.table
@@ -22,11 +22,11 @@
                     = render partial: 'hours_logs/row', locals: { week_start: period.start_date, hours_type: 'service' }
                     = render partial: 'hours_logs/row', locals: { week_start: period.start_date, hours_type: 'lunch' }
                             
-                    %tr
+                    %tr.daytotals
                       %td
                       - (0..6).each do
                         %td
-                          %strong 0 hours
+                          %strong <span>0.5</span> hours
                       %td
                       %td.text-right
                         = link_to "Add row", create_row_hours_logs_path(week_start: period.start_date), class: 'btn btn-sm btn-default addrowbutton', remote: true, method: :post
@@ -40,7 +40,24 @@
       $(this).addClass('clicked');
     });
 
-    $('#submission_period').on('click', '.remove-row-button', function(){
+    $('.submission_period').on('click', '.remove-row-button', function(){
       $(this).closest('tr').remove();
+    });
+
+    // Hours updating
+    $('.submission_period').on('change', '.hoursinput', function(e){
+      // Tally column
+      var siblingIndex = $(this).closest('td').index();
+      var columnHours = 0;
+      $(this).closest('table tbody').find('tr').each(function(i, el){
+        var hours = $(el).find('td').eq(siblingIndex).find('input').val();
+        if(!!hours){
+          columnHours += parseFloat(hours);
+        }
+      });
+
+      $('.daytotals span').eq(siblingIndex - 1).html(columnHours);
+      
+      //Tally row
     });
   });
