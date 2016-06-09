@@ -10,13 +10,8 @@ class SubmissionPeriod
     self.new(start_date)
   end
 
-  def hours_logs
-    HoursLog.where("date > ? AND date < ?", start_date, start_date + PERIOD_LENGTH)
-  end
-
   def submitted_for?(user, project_id)
-    false
-    # hours_logs.where(user: user, project_id: project_id).any?
+    Submission.joins(:hours_logs).where(user: user, project_id: project_id).where("hours_logs.date > ? AND hours_logs.date < ?", start_date, end_date).any?
   end
 
   def start_date
