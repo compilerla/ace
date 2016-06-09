@@ -12,5 +12,7 @@ class SubmissionsController < ApplicationController
       else 'unsubmitted'
         'unsubmitted'
       end
+
+    @accumulated_hours = HoursLog.accumulated_hours_for_user(current_user)
   end
 end

@@ -12,6 +12,8 @@
     .col-md-12
       .page-header
         %h2 Dashboard
+        .well
+          Total accumulated hours: <strong>#{@accumulated_hours}</strong>
       %ul.nav.nav-tabs
         %li{role: 'presentation', class: (params[:f].blank? || params[:f] == 'unsubmitted' ? 'active' : '')}
           = link_to "Not submitted", "?f=unsubmitted"
