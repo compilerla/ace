@@ -1,5 +1,5 @@
 - (0..6).each do |i|
   %td
-    %input.form-control{name: "typeweeks[#{uuid}][hours][#{week_start + i.days}]", type: 'text', placeholder: '0'}
+    %input.form-control{name: "typeweeks[#{uuid}][hours][#{week_start + i.days}]", type: 'text', placeholder: '0', value: (hours_type == 'lunch' ? 0.5 : nil)}
 %td
   %strong 0 hours

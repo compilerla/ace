@@ -19,6 +19,7 @@
                   = render partial: 'period_table_header', locals: { period: period }
 
                   %tbody
+                    = render partial: 'hours_logs/row', locals: { week_start: period.start_date, hours_type: 'service' }
                     = render partial: 'hours_logs/row', locals: { week_start: period.start_date, hours_type: 'lunch' }
                             
                     %tr

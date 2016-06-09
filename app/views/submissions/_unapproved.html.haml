@@ -15,7 +15,7 @@
                 %tbody
                   - submission.hours_logs_by_log_type.each_pair do |log_type, hours_logs|
                     %tr
-                      %td{style: 'width:20%;'}
+                      %td{style: 'width:20%;'}= log_type.humanize
 
                       - hours_logs.each do |log|
                         %td= log.hours
