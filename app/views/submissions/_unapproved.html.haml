@@ -4,7 +4,7 @@
       .col-md-12
         .panel{ class: (Date.today  > submission.period.end_date ? 'panel-warning' : 'panel-default') }
           .panel-heading
-            %strong #{submission.period.period_start.strftime("%B %d, %Y")} - #{(submission.period.period_start + 6.days).strftime("%B %d, %Y")}
+            %strong #{submission.period.start_date.strftime("%B %d, %Y")} - #{(submission.period.start_date + 6.days).strftime("%B %d, %Y")}
             .label.label-default 
           = form_tag hours_logs_path, id: 'submission_period' do
             = hidden_field_tag "project_id", submission.project_id
@@ -30,6 +30,6 @@
                         %strong 0 hours
 
               .col-md-12
-                = submit_tag 'Submit hours', class: 'btn btn-primary'
+                = submit_tag 'Unsubmit hours', class: 'btn btn-primary'
 - else
   %p.margin-top You currently don't have any hours awaiting approval.

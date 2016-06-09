@@ -1,8 +1,8 @@
 class SubmissionPeriod
   PERIOD_LENGTH = 1.week
 
-  def initialize(start_date)
-    @start_date = start_date
+  def initialize(date)
+    @date = date
   end
 
   def self.from_hours_log(hours_log)
@@ -10,12 +10,8 @@ class SubmissionPeriod
     self.new(start_date)
   end
 
-  def period_start
-    @start_date
-  end
-
   def hours_logs
-    HoursLog.where("date > ? AND date < ?", @start_date, @start_date + PERIOD_LENGTH)
+    HoursLog.where("date > ? AND date < ?", start_date, start_date + PERIOD_LENGTH)
   end
 
   def submitted_for?(user, project_id)
@@ -24,17 +20,17 @@ class SubmissionPeriod
   end
 
   def start_date
-    @start_date - @start_date.wday
+    @date - @date.wday
   end
 
   def end_date
-    @start_date + PERIOD_LENGTH
+    start_date + PERIOD_LENGTH
   end
 
   def array_of_days
     days = []
     for i in 0..6
-      days << (@start_date + i).strftime("%A")
+      days << (start_date + i).strftime("%A")
     end
 
     days
