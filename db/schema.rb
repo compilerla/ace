@@ -142,11 +142,11 @@ ActiveRecord::Schema.define(version: 20160608171503) do
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
 
   create_table "submissions", force: :cascade do |t|
-    t.integer  "user_id",    null: false
-    t.integer  "project_id", null: false
+    t.integer  "user_id",     null: false
+    t.integer  "project_id",  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.datetime "approved"
+    t.datetime "approved_at"
   end
 
   create_table "users", force: :cascade do |t|
