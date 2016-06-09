@@ -8,7 +8,13 @@ class HoursLog < ActiveRecord::Base
   belongs_to :user
 
   def self.types_for_select
-    TYPES.map{ |type| [type.humanize, type] }
+    TYPES.map do |type|
+      if ['pto', 'vsp'].include?(type)
+        type.upcase
+      else
+        [type.humanize, type]
+      end
+    end
   end
 
   def submission_period

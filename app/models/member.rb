@@ -1,10 +1,12 @@
 class Member
   include Filemaker::Model
 
-  database 'JoshuaDevelopment'
+  database 'Joshua'
   layout :member 
 
   string :email
+  string :first_name
+  string :last_name
   string :id, identity: true
 
   has_many :project_member, source_key: :member_id

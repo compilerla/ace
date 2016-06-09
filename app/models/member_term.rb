@@ -1,7 +1,7 @@
 class MemberTerm
   include Filemaker::Model
 
-  database 'JoshuaDevelopment'
+  database 'Joshua'
 
   layout :member_term
 

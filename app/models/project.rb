@@ -1,7 +1,7 @@
 class Project
   include Filemaker::Model
 
-  database 'JoshuaDevelopment'
+  database 'Joshua'
   layout :project
 
   string :title

@@ -1,7 +1,7 @@
 class ProjectMember
   include Filemaker::Model
 
-  database 'JoshuaDevelopment'
+  database 'Joshua'
   layout :project_member
 
   integer :id, identity: true
