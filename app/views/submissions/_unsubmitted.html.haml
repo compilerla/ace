@@ -55,9 +55,16 @@
           columnHours += parseFloat(hours);
         }
       });
-
       $('.daytotals span').eq(siblingIndex - 1).html(columnHours);
       
       //Tally row
+      var rowHours = parseFloat($(this).val());
+      var siblingIndex = $(this).closest('td').siblings().each(function(i, sibling){
+        var hours = $(sibling).find('input').val();
+        if(!!hours){
+          rowHours += parseFloat(hours);
+        }
+        $(this).closest('tr').find('.rowtotal').find('span').html(rowHours);
+      });
     });
   });
