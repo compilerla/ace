@@ -1,0 +1,9 @@
+.row.margin-top
+  .col-md-12
+    .panel.panel-success
+      .panel-heading
+        %strong #{submission.period.start_date.strftime("%B %d, %Y")} - #{(submission.period.start_date + 6.days).strftime("%B %d, %Y")}
+        .label.label-default 
+        
+      .panel-body
+        = render partial: 'submissions/hours_table', locals: { submission: submission }

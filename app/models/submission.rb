@@ -27,6 +27,16 @@ class Submission < ActiveRecord::Base
     approved_at.present?
   end
 
+  def hours_for_day(day_num)
+    logs = hours_logs.where(date: period.start_date + day_num.send(:days))
+    logs.inject(0){ |sum, log| sum + log.hours }
+  end
+
+  def hours_for_log_type(type)
+    logs = hours_logs.where(log_type: type)
+    logs.inject(0){ |sum, log| sum + log.hours }
+  end
+
   private
 
   def check_approved

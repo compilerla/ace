@@ -1,0 +1,21 @@
+%table.table
+  = render partial: 'submissions/period_table_header', locals: { period: submission.period }
+
+  %tbody
+    - submission.hours_logs_by_log_type.each_pair do |log_type, hours_logs|
+      %tr
+        %td{style: 'width:20%;'}= log_type.humanize
+
+        - hours_logs.each do |log|
+          %td= log.hours
+
+        %td
+          %strong= submission.hours_for_log_type(log_type)
+            
+    %tr
+      %td
+      - (0..6).each do |i|
+        %td
+          %strong
+            = submission.hours_for_day(i)
+            hours

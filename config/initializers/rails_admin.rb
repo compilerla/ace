@@ -34,4 +34,17 @@ RailsAdmin.config do |config|
     # history_index
     # history_show
   end
+
+  config.model 'Submission' do
+    list do
+    end
+
+    configure :hours_logs do
+      pretty_value do
+        submission = bindings[:object]
+        view = ActionView::Base.new(ActionController::Base.view_paths, {})
+        view.render partial: 'submissions/hours_table', locals: { submission: submission }
+      end
+    end
+  end
 end

@@ -1,33 +1,6 @@
 - if current_user.submissions.approved.any?
   - current_user.submissions.approved.each do |submission|
-    .row.margin-top
-      .col-md-12
-        .panel.panel-success
-          .panel-heading
-            %strong #{submission.period.start_date.strftime("%B %d, %Y")} - #{(submission.period.start_date + 6.days).strftime("%B %d, %Y")}
-            .label.label-default 
-          = form_tag hours_logs_path, id: 'submission_period' do
-            = hidden_field_tag "project_id", submission.project_id
-            .panel-body
-              %table.table
-                = render partial: 'period_table_header', locals: { period: submission.period }
-
-                %tbody
-                  - submission.hours_logs_by_log_type.each_pair do |log_type, hours_logs|
-                    %tr
-                      %td{style: 'width:20%;'}= log_type.humanize
-
-                      - hours_logs.each do |log|
-                        %td= log.hours
-
-                      %td
-                        %strong= hours_logs.inject(0){|sum, l| sum + l.hours} 
-                          
-                  %tr
-                    %td
-                    - (0..6).each do
-                      %td
-                        %strong 0 hours
+    = render 'approved_submission'
 
 - else
   .margin-top

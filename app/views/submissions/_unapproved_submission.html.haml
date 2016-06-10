@@ -1,0 +1,12 @@
+.row.margin-top
+  .col-md-12
+    .panel{ class: (Date.today  > submission.period.end_date ? 'panel-warning' : 'panel-default') }
+      .panel-heading
+        %strong #{submission.period.start_date.strftime("%B %d, %Y")} - #{(submission.period.start_date + 6.days).strftime("%B %d, %Y")}
+        .label.label-default 
+
+      .panel-body
+        = render partial: 'submission/hours_table', locals: { submission: submission }
+
+        .col-md-12
+          = link_to 'Unsubmit hours', Rails.application.routes.url_helpers.submission_path(submission), method: :delete, class: 'btn btn-primary'
