@@ -23,7 +23,7 @@ class ProjectMember
       return [] unless term
 
       intersect_start_date = [start_date, term.start_date].max
-      intersect_end_date = [end_date, term.end_date].min
+      intersect_end_date = [end_date, term.end_date, Date.today].min
       iterator_date = intersect_end_date
 
       while(iterator_date >= intersect_start_date)
