@@ -42,6 +42,12 @@ RailsAdmin.config do |config|
       end
     end
 
+    configure :project_id do
+      pretty_value do
+        Project.find(bindings[:object].project_id).title
+      end
+    end
+
     configure :hours_logs do
       pretty_value do
         submission = bindings[:object]
