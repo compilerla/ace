@@ -31,6 +31,7 @@ class HoursLogsController < ApplicationController
 
   def process_type_week(type_week_params, submission)
     type_week_params[:hours].each_pair do |date, hours|
+      hours = 0 if hours.blank?
       log_attrs = {
         date: Date.iso8601(date),
         hours: hours,

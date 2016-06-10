@@ -10,7 +10,7 @@ class HoursLog < ActiveRecord::Base
   def self.types_for_select
     TYPES.map do |type|
       if ['pto', 'vsp'].include?(type)
-        type.upcase
+        [type.upcase, type]
       else
         [type.humanize, type]
       end
