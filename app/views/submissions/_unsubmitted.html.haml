@@ -35,6 +35,32 @@
                   = submit_tag 'Submit hours', class: 'btn btn-primary'
 
 :javascript
+  function runTotals(){
+
+  }
+
+  function totalColumn(table, siblingIndex){
+    var columnHours = 0;
+    $(table).find('tbody').find('tr').each(function(i, el){
+      var hours = $(el).find('td').eq(siblingIndex).find('input').val();
+      if(!!hours){
+        columnHours += parseFloat(hours);
+      }
+    });
+    $('.daytotals span').eq(siblingIndex - 1).html(columnHours);
+  }
+
+  function totalRow(table, index){
+    var rowHours = 0;
+    var siblingIndex = $(table).find('tr').eq(index + 1).find('td').each(function(i, sibling){
+      var hours = $(sibling).find('input').val();
+      if(!!hours){
+        rowHours += parseFloat(hours);
+      }
+      $(this).closest('tr').find('.rowtotal').find('span').html(rowHours);
+    });
+  }
+
   $(document).ready(function(){
     $('.addrowbutton').click(function(){
       $(this).addClass('clicked');
@@ -48,23 +74,12 @@
     $('.submission_period').on('change', '.hoursinput', function(e){
       // Tally column
       var siblingIndex = $(this).closest('td').index();
-      var columnHours = 0;
-      $(this).closest('table tbody').find('tr').each(function(i, el){
-        var hours = $(el).find('td').eq(siblingIndex).find('input').val();
-        if(!!hours){
-          columnHours += parseFloat(hours);
-        }
-      });
-      $('.daytotals span').eq(siblingIndex - 1).html(columnHours);
+      var table = $(this).closest('table');
+      totalColumn(table, siblingIndex);
       
       //Tally row
-      var rowHours = parseFloat($(this).val());
-      var siblingIndex = $(this).closest('td').siblings().each(function(i, sibling){
-        var hours = $(sibling).find('input').val();
-        if(!!hours){
-          rowHours += parseFloat(hours);
-        }
-        $(this).closest('tr').find('.rowtotal').find('span').html(rowHours);
-      });
+      var table = $(this).closest('table');
+      var rowIndex = $(this).closest('tr').index();
+      totalRow(table, rowIndex);
     });
   });

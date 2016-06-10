@@ -1,5 +1,5 @@
 - (0..6).each do |i|
   %td
-    %input.form-control.hoursinput{name: "typeweeks[#{uuid}][hours][#{week_start + i.days}]", type: 'text', placeholder: '0', value: (hours_type == 'lunch' ? 0.5 : nil)}
+    %input.form-control.hoursinput{name: "typeweeks[#{uuid}][hours][#{week_start + i.days}]", type: 'text', placeholder: '0', value: (hours_type == 'lunch' && ![0, 6].include?(i) ? 0.5 : nil)}
 %td.rowtotal
-  %strong <span>0</span> hours
+  %strong <span>#{hours_type == "lunch" ? 2.5 : 0 }</span> hours
