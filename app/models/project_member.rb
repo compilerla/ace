@@ -33,7 +33,7 @@ class ProjectMember
       
     end
 
-    periods
+    periods.uniq{ |period| period.start_date }
   end
 
 end
