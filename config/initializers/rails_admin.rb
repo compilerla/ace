@@ -36,7 +36,10 @@ RailsAdmin.config do |config|
   end
 
   config.model 'Submission' do
-    list do
+    configure :user do
+      pretty_value do
+        bindings[:object].user.email
+      end
     end
 
     configure :hours_logs do

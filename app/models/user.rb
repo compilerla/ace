@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   has_many :submissions
 
   def project_members
-    ProjectMember.where(member_id: member_id)
+    ProjectMember.where(member_id: member_id).order('start_date desc')
   end
 
   def terms
