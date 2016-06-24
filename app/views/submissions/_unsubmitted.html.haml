@@ -30,9 +30,22 @@
                       %td
                       %td.text-right
                         = link_to "Add row", create_row_hours_logs_path(week_start: period.start_date), class: 'btn btn-sm btn-default addrowbutton', remote: true, method: :post
+                .row                        
+                  .col-md-4.margin-bottom
+                    %label Notable accomplishments (last 2 weeks)
+                    = text_area_tag 'submission[accomplishments]', nil, class: 'form-control', placeholder: "Over the last two weeks, I was able to..."
 
-                .col-md-12
-                  = submit_tag 'Submit hours', class: 'btn btn-primary'
+                  .col-md-4.margin-bottom
+                    %label Goals (next two weeks)
+                    = text_area_tag 'submission[accomplishments]', nil, class: 'form-control', placeholder: "Over the next two weeks, my goals are to..."
+                    
+                  .col-md-4.margin-bottom
+                    %label Did you encounter any challenges? How did you solve them?
+                    = text_area_tag 'submission[accomplishments]', nil, class: 'form-control', placeholder: "Some challenges I had were..."
+
+                .row
+                  .col-md-12
+                    = submit_tag 'Submit hours', class: 'btn btn-primary'
 
 :javascript
   function runTotals(){
