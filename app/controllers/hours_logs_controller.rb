@@ -18,8 +18,7 @@ class HoursLogsController < ApplicationController
 
   def process_hours_data
     ActiveRecord::Base.transaction do
-      submission = Submission.create(user: current_user,
-                        project_id: params[:project_id])
+      submission = Submission.create(submission_create_params)
 
       params[:typeweeks].each_pair do |k, v|
         process_type_week(v, submission)
@@ -42,6 +41,14 @@ class HoursLogsController < ApplicationController
 
       submission.hours_logs.create!(log_attrs)
     end
+  end
+
+  def submission_create_params
+    attrs = params.require(:submission).permit(:accomplishments, :goals, :challenges)
+    attrs.merge({
+      user: current_user,
+      project_id: params[:project_id]
+    })
   end
 
 end

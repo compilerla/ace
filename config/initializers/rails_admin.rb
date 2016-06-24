@@ -36,6 +36,7 @@ RailsAdmin.config do |config|
   end
 
   config.model 'Submission' do
+
     configure :user do
       pretty_value do
         bindings[:object].user.email
@@ -54,6 +55,15 @@ RailsAdmin.config do |config|
         view = ActionView::Base.new(ActionController::Base.view_paths, {})
         view.render partial: 'submissions/hours_table', locals: { submission: submission }
       end
+    end
+    
+    show do
+      field :user
+      field :project_id
+      field :hours_logs
+      field :accomplishments
+      field :goals
+      field :challenges
     end
   end
 end
