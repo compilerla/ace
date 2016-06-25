@@ -16,7 +16,7 @@ class Submission < ActiveRecord::Base
         ->{ where("approved_at IS NULL") }
 
   def period
-    @period ||= SubmissionPeriod.new(hours_logs.order("date DESC").first.date)
+    @period ||= SubmissionPeriod.new(first_day)
   end
 
   def hours_logs_by_log_type
@@ -35,6 +35,10 @@ class Submission < ActiveRecord::Base
   def hours_for_log_type(type)
     logs = hours_logs.where(log_type: type)
     logs.inject(0){ |sum, log| sum + log.hours }
+  end
+
+  def first_day
+    hours_logs.order("date DESC").first.date
   end
 
   private
