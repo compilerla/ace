@@ -1,6 +1,6 @@
 - if current_user.submissions.approved.any?
   - current_user.submissions.approved.each do |submission|
-    = render 'approved_submission'
+    = render partial: 'approved_submission', locals: { submission: submission }
 
 - else
   .margin-top

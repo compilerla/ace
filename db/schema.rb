@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160624205056) do
+ActiveRecord::Schema.define(version: 20160625000043) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,6 +85,14 @@ ActiveRecord::Schema.define(version: 20160624205056) do
   end
 
   add_index "member_term", ["id"], name: "index_id", using: :btree
+
+  create_table "pay_periods", force: :cascade do |t|
+    t.string   "number",           null: false
+    t.datetime "start_at",         null: false
+    t.datetime "end_at",           null: false
+    t.datetime "timesheet_due_at", null: false
+    t.datetime "pay_day_at",       null: false
+  end
 
   create_table "project", force: :cascade do |t|
     t.string  "ace_id",             limit: 2044, null: false

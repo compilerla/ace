@@ -1,0 +1,8 @@
+en:
+  admin:
+    actions:
+      by_period: 
+        title: "By period"
+        menu: "By period"
+        breadcrumb: "..."
+        link: "..."

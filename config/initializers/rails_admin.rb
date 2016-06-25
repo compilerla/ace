@@ -35,6 +35,12 @@ RailsAdmin.config do |config|
     # history_show
   end
 
+  config.actions do
+    collection :by_period do
+      only ['Submission']
+    end
+  end
+
   config.model 'Submission' do
 
     configure :user do
