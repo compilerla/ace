@@ -6,6 +6,6 @@ development:
 
 production:
   default:
-    host: <%= ENV['FILEMAKER_HOST'] || 'slc.usaconservation.org' %>
-    account_name: <%= ENV['FILEMAKER_ACCOUNT_NAME'] || 'Matrix' %>
-    password: <%= ENV['FILEMAKER_PASSWORD'] || 'G3k#zR&59mQ?4U' %>
+    host: <%= ENV['FILEMAKER_HOST'] %>
+    account_name: <%= ENV['FILEMAKER_ACCOUNT_NAME'] %>
+    password: <%= ENV['FILEMAKER_PASSWORD'] %>
